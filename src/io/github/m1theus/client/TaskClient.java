@@ -13,10 +13,10 @@ public class TaskClient {
     private static final int PORT = 1337;
     private static final String EXIT = "exit";
 
-
-    public static void main(String[] args) throws Exception {
+    public void run() throws IOException, InterruptedException {
         try (var socket = new Socket(HOST, PORT)) {
             log.info("Connection established");
+            log.info("Available commands: [c1, c2, c3, exit]");
 
             final var clientInputThread = new Thread(() -> {
 

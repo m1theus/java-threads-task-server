@@ -65,14 +65,4 @@ public class TaskServer {
         this.isRunning.set(false);
     }
 
-    public static void main(String[] args) {
-        try {
-            final var taskServer = new TaskServer();
-
-            taskServer.run();
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }
