@@ -1,9 +1,11 @@
 package io.github.m1theus.server;
 
 import io.github.m1theus.server.commands.Command;
+import io.github.m1theus.server.commands.Command3;
 import io.github.m1theus.server.commands.MergeCommand2;
 import io.github.m1theus.server.commands.RandomIntCommand2;
 import io.github.m1theus.server.commands.RandomLongCommand2;
+import io.github.m1theus.server.commands.ServerCommand;
 
 import java.io.PrintStream;
 import java.net.Socket;
@@ -16,12 +18,12 @@ public class AllocateTask implements Runnable {
     private static final Logger log = Logger.getLogger(AllocateTask.class.getName());
     private static final String EXIT = "exit";
 
-    private final BlockingQueue<String> commandQueue;
+    private final BlockingQueue<ServerCommand> commandQueue;
     private final ExecutorService threadPool;
     private final Socket socket;
     private final TaskServer server;
 
-    public AllocateTask(final BlockingQueue<String> commandQueue, final ExecutorService threadPool,
+    public AllocateTask(final BlockingQueue<ServerCommand> commandQueue, final ExecutorService threadPool,
                         final Socket socket, final TaskServer taskServer) {
         this.commandQueue = commandQueue;
         this.threadPool = threadPool;
@@ -56,7 +58,7 @@ public class AllocateTask implements Runnable {
                         break;
                     }
                     case "c3": {
-                        this.commandQueue.put(command);
+                        this.commandQueue.put(new Command3(this.socket));
                         clientOutput.println("[SERVER] command c3 added in the queue");
                         break;
                     }

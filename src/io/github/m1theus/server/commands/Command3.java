@@ -27,4 +27,9 @@ public class Command3 implements ServerCommand<String> {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public String toString() {
+        return "c3";
+    }
 }

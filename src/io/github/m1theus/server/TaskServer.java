@@ -1,5 +1,6 @@
 package io.github.m1theus.server;
 
+import io.github.m1theus.server.commands.ServerCommand;
 import io.github.m1theus.server.exception.ExceptionThreadHandler;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class TaskServer {
     public static final int PORT = 1337;
 
     private final ServerSocket server;
-    private final BlockingQueue<String> commandQueue;
+    private final BlockingQueue<ServerCommand> commandQueue;
     private final ExecutorService threadPool;
     private AtomicBoolean isRunning;
 
